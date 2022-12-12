@@ -30,23 +30,14 @@
       0 https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec
     -->
     <form action="https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec" method="post">
+      <!-- input text 文字方塊(單行)-->
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <label for="name" class="form-label">姓名</label>
+        <input type="text" name='name' value='' class="form-control" id="name" aria-describedby="nameHelp" required>
+        <div id="nameHelp" class="form-text">請輸入姓名(網頁無障礙語法)</div>
       </div>
 
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-      </div>
-
-      <div class="mb-3 form-check">
-        <input type="checkbox" name="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary w-100">送出</button>
 
     </form>
   </main>
