@@ -16,23 +16,41 @@
 </head>
 
 <body>
-  <h1 class="text-center mt-3">表單</h1>
-  <!--
-    1 https://script.google.com/macros/s/AKfycbyzrOnYptO7-o5hNMrLAYoUwkve6dRjEQLqXyj5gBT4iSQbg1QlMaP0zmTtBEXbjUhScw/exec
+  <main class="container">
+    <h1 class="text-center mt-3">表單</h1>
+    <!--
+      1 https://script.google.com/macros/s/AKfycbyzrOnYptO7-o5hNMrLAYoUwkve6dRjEQLqXyj5gBT4iSQbg1QlMaP0zmTtBEXbjUhScw/exec
 
-    https://script.google.com/macros/s/AKfycbyjxOzt4aObaZnZb9W_841-P4E8rl6UvyzJQS_7vgbp_FLMsa7SwWxRoti1ltuChOuU4A/exec
+      https://script.google.com/macros/s/AKfycbyjxOzt4aObaZnZb9W_841-P4E8rl6UvyzJQS_7vgbp_FLMsa7SwWxRoti1ltuChOuU4A/exec
 
-    2 https://script.google.com/macros/s/AKfycbyzrOnYptO7-o5hNMrLAYoUwkve6dRjEQLqXyj5gBT4iSQbg1QlMaP0zmTtBEXbjUhScw/exec
+      2 https://script.google.com/macros/s/AKfycbyzrOnYptO7-o5hNMrLAYoUwkve6dRjEQLqXyj5gBT4iSQbg1QlMaP0zmTtBEXbjUhScw/exec
 
-    3 https://script.google.com/macros/s/AKfycbyJE0_CRFbyh6IpUwfbPGZR_QH9_vsLZIJEqQ-JeXl1vLbsO7TjTfGR4jG_U8cvDqrr/exec
+      3 https://script.google.com/macros/s/AKfycbyJE0_CRFbyh6IpUwfbPGZR_QH9_vsLZIJEqQ-JeXl1vLbsO7TjTfGR4jG_U8cvDqrr/exec
 
-    0 https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec
-   -->
-  <form action="https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec" method="post">
-    <input type="text" name="name" value="" class='' id="name">
-    <input type="submit" value="送出">
+      0 https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec
+    -->
+    <form action="https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec" method="post">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
 
-  </form>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" name="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+  </main>
+
 
 </body>
 
