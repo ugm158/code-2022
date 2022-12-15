@@ -1,4 +1,3 @@
-
 /*=====================================
   ex
 =====================================*/
@@ -9,6 +8,14 @@ function test(){
     type: "text",
     name: "name",
     value: "",
-    valid: "required"
+    valid: "required",
+    option: "單選1|單選2|單選3"
   };
+
+  let form_item = [{}, {}, {}]
+
+
+
+  console.log(item.width, item['label']);
+
 }
