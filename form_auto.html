@@ -176,17 +176,16 @@
         </div>
       </div>
 
-      <!-- 隱藏-->
-      <input type="hidden" name='op' value='set_sheet' class="form-control" id="op">
-
-      <button type="submit" class="btn btn-primary w-100" id="submit">送出</button>
 
     </form>
 
     <form action="">
       <div class="row" id="form_item">
-
       </div>
+
+      <!-- 隱藏-->
+      <input type="hidden" name='op' value='set_sheet' class="form-control" id="op">
+      <button type="submit" class="btn btn-primary w-100" id="submit">送出</button>
     </form>
   </main>
 
@@ -194,117 +193,124 @@
     window.onload = function() {
       let submitBtn = document.getElementById('submit');
       submitBtn.onclick = function() {
-        let checkbox = document.getElementsByClassName('checkbox');
-        for (let i in checkbox) {
-          console.log(i, checkbox[i].checked)
-        }
-        return false;
+
       }
 
       let box = document.querySelector('.container');
-      box.insertAdjacentHTML("afterend", "<div class='text-center mt-3'>container寬度：" + box.clientWidth + "px</div>" + "<div class='text-center mt-3'>網頁可見區域寬：" + document.body.clientWidth + "px</div>" );
+      box.insertAdjacentHTML("afterend", "<div class='text-center mt-3'>container寬度：" + box.clientWidth + "px</div>" + "<div class='text-center mt-3'>網頁可見區域寬：" + document.body.clientWidth + "px</div>");
 
-      let stru = [
-        {
+      let stru = [{
           label: '姓名123',
           type: 'text',
           name: 'name',
           value: '',
           valid: '',
           option: '',
-          width: '3'},
+          width: '3'
+        },
         {
           label: '網址',
           type: 'url',
           name: 'url',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
-          width: '3'},
+          width: '3'
+        },
         {
           label: 'EMAIL',
           type: 'email',
           name: 'email',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
-          width: '3'},
+          width: '3'
+        },
         {
           label: 'Password',
           type: 'password',
           name: 'password',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
-          width: '3'},
+          width: '3'
+        },
         {
           label: '日期方塊',
           type: 'date',
           name: 'date',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
-          width: '3'},
+          width: '3'
+        },
         {
           label: '年月方塊',
           type: 'month',
           name: 'month',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
-          width: '3'},
+          width: '3'
+        },
         {
           label: '年週方塊',
           type: 'week',
           name: 'week',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
-          width: '3'},
+          width: '3'
+        },
         {
           label: '顏色選擇器',
           type: 'color',
           name: 'color',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
-          width: '3'},
+          width: '3'
+        },
         {
           label: '數字方塊',
           type: 'number',
           name: 'number',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
-          width: '3'},
+          width: '3'
+        },
         {
           label: '搜尋方塊',
           type: 'search',
           name: 'search',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
-          width: '3'},
+          width: '3'
+        },
         {
           label: '單選',
           type: 'radio',
           name: 'radio',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '單選1|單選2|單選3',
-          width: '12'},
+          width: '12'
+        },
       ];
+
       let form_item = '';
-      let option,option_item;
-      for(let i in stru){
-        if(stru[i]['type'] === 'text'){//簡答
+      let option, option_item;
+      for (let i in stru) {
+        if (stru[i]['type'] === 'text') { //簡答
           form_item += `
             <!-- input text 文字方塊(單行) -->
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'url'){//網址
+        } else if (stru[i]['type'] === 'url') { //網址
           form_item += `
             <!-- input url 網址 -->
             <div class="col-sm-${stru[i]['width']} mb-3">
@@ -312,66 +318,66 @@
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
 
-        }else if(stru[i]['type'] === 'email'){//EMAIL
+        } else if (stru[i]['type'] === 'email') { //EMAIL
           form_item += `
             <!-- input email EMAIL -->
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'password'){//password
+        } else if (stru[i]['type'] === 'password') { //password
           form_item += `
             <!-- input password 密碼 -->
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'date'){//日期方塊
+        } else if (stru[i]['type'] === 'date') { //日期方塊
           form_item += `
             <!-- input date 日期方塊 -->
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'month'){//年月方塊
+        } else if (stru[i]['type'] === 'month') { //年月方塊
           form_item += `
             <!-- input month 年月方塊 -->
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'week'){//年週方塊
+        } else if (stru[i]['type'] === 'week') { //年週方塊
           form_item += `
             <!-- input week 年週方塊 -->
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'color'){//顏色選擇器
+        } else if (stru[i]['type'] === 'color') { //顏色選擇器
           form_item += `
             <!-- input color 顏色選擇器 -->
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'number'){//數字方塊
+        } else if (stru[i]['type'] === 'number') { //數字方塊
           form_item += `
             <!-- input number 數字方塊 -->
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'search'){//搜尋方塊
+        } else if (stru[i]['type'] === 'search') { //搜尋方塊
           form_item += `
             <!-- input search 搜尋方塊 -->
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'radio'){//
+        } else if (stru[i]['type'] === 'radio') { //
           options = stru[i]['option'].split('|');
           option_item = '';
-          for(let j in options){
+          for (let j in options) {
             option_item += `
               <div class="form-check form-check-inline">
                 <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${options[j]}" class="form-check-input" id="${stru[i]['name']}_${j}" ${stru[i]['valid']}>
