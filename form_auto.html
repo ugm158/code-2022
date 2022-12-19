@@ -199,6 +199,7 @@
       let box = document.querySelector('.container');
       box.insertAdjacentHTML("afterend", "<div class='text-center mt-3'>container寬度：" + box.clientWidth + "px</div>" + "<div class='text-center mt-3'>網頁可見區域寬：" + document.body.clientWidth + "px</div>");
 
+      // 整理出來的結構資料
       let stru = [{
           label: '姓名123',
           type: 'text',
@@ -302,103 +303,10 @@
 
       let form_item = '';
       let option, option_item;
-      for (let i in stru) {
-        if (stru[i]['type'] === 'text') { //簡答
-          form_item += `
-            <!-- input text 文字方塊(單行) -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-            </div>`;
-        } else if (stru[i]['type'] === 'url') { //網址
-          form_item += `
-            <!-- input url 網址 -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-            </div>`;
 
-        } else if (stru[i]['type'] === 'email') { //EMAIL
-          form_item += `
-            <!-- input email EMAIL -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-            </div>`;
-        } else if (stru[i]['type'] === 'password') { //password
-          form_item += `
-            <!-- input password 密碼 -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-            </div>`;
-        } else if (stru[i]['type'] === 'date') { //日期方塊
-          form_item += `
-            <!-- input date 日期方塊 -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-            </div>`;
-        } else if (stru[i]['type'] === 'month') { //年月方塊
-          form_item += `
-            <!-- input month 年月方塊 -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-            </div>`;
-        } else if (stru[i]['type'] === 'week') { //年週方塊
-          form_item += `
-            <!-- input week 年週方塊 -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-            </div>`;
-        } else if (stru[i]['type'] === 'color') { //顏色選擇器
-          form_item += `
-            <!-- input color 顏色選擇器 -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-            </div>`;
-        } else if (stru[i]['type'] === 'number') { //數字方塊
-          form_item += `
-            <!-- input number 數字方塊 -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-            </div>`;
-        } else if (stru[i]['type'] === 'search') { //搜尋方塊
-          form_item += `
-            <!-- input search 搜尋方塊 -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-            </div>`;
-        } else if (stru[i]['type'] === 'radio') { //
-          options = stru[i]['option'].split('|');
-          option_item = '';
-          for (let j in options) {
-            option_item += `
-              <div class="form-check form-check-inline">
-                <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${options[j]}" class="form-check-input" id="${stru[i]['name']}_${j}" ${stru[i]['valid']}>
-                <label class="form-check-label" for="${stru[i]['name']}_${j}">${options[j]}</label>
-              </div>
-            `;
 
-          }
-
-          form_item += `
-            <!-- 單選 -->
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label class="form-label w-100">${stru[i]['label']}</label>
-              ${option_item}
-            </div>
-          `
-
-        }
-      }
       let form_item_id = document.getElementById('form_item');
-      console.log(form_item_id)
+
       form_item_id.innerHTML = form_item;
     }
   </script>
