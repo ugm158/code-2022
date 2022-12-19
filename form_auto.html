@@ -306,7 +306,7 @@
         if(stru[i]['type'] === 'text'){//簡答
           form_item_html = `
             <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">姓名</label>
+              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="text" name="${stru[i]['name']}" value="" class="form-control" id="${stru[i]['name']}" required>
             </div>`;
         }
