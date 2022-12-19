@@ -245,8 +245,10 @@
             </div>`;
         }else if(stru[i]['type'] === 'radio'){
           options = stru[i]['option'].split('|');
-          console.log(options);
 
+          console.log(options);
+          //跑迴圈
+          //選項html
           form_item_html += `
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label class="form-label w-100">${stru[i]['label']}</label>
