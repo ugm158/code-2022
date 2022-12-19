@@ -43,11 +43,6 @@
 
     <form action="https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec" method="post">
       <div class="row">
-        <!-- input text 文字方塊(單行) -->
-        <div class="col-sm-3 mb-3">
-          <label for="name" class="form-label">姓名</label>
-          <input type="text" name="name" value="" class="form-control" id="name" required>
-        </div>
 
         <!-- input url 網址 -->
         <div class="col-sm-3 mb-3">
@@ -179,7 +174,7 @@
 
     </form>
 
-    <form action="">
+    <form action="" class="border border-primary">
       <div class="row" id="form_item">
 
       </div>
@@ -201,6 +196,7 @@
       box.insertAdjacentHTML("afterend", "<div class='text-center mt-3'>container寬度：" + box.clientWidth + "px</div>" + "<div class='text-center mt-3'>網頁可見區域寬：" + document.body.clientWidth + "px</div>");
 
       // 整理出來的結構資料
+
       let stru = [{
           label: '姓名123',
           type: 'text',
@@ -302,9 +298,20 @@
         },
       ];
       let form_item = document.getElementById('form_item');
+      console.log(form_item);
+      let form_item_html = '';
       for(let i in stru){
+        if(stru[i]['type'] === 'text'){//簡答
+          form_item_html = `
+            <!-- input text 文字方塊(單行) -->
+            <div class="col-sm-3 mb-3">
+              <label for="name" class="form-label">姓名</label>
+              <input type="text" name="name" value="" class="form-control" id="name" required>
+            </div>`;
+        }
 
       }
+      form_item.innerHTML = form_item_html
 
 
 
