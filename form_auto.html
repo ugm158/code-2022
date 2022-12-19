@@ -45,59 +45,6 @@
       <div class="row">
 
 
-        <!-- input email EMAIL-->
-        <div class="col-sm-3 mb-3">
-          <label for="email" class="form-label">EMAIL</label>
-          <input type="email" name="email" value="" class="form-control" id="email">
-        </div>
-
-        <!-- input password 密碼 -->
-        <div class="col-sm-3 mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" value="" class="form-control" id="password">
-        </div>
-
-        <!-- input date 日期方塊 -->
-        <div class="col-sm-3 mb-3">
-          <label for="date" class="form-label">日期方塊</label>
-          <input type="date" name="date" value="" class="form-control" id="date">
-        </div>
-
-        <!-- input date 年月方塊 -->
-        <div class="col-sm-3 mb-3">
-          <label for="month" class="form-label">年月方塊</label>
-          <input type="month" name="month" value="" class="form-control" id="month">
-        </div>
-
-        <!-- input week 年週方塊-->
-        <div class="col-sm-3 mb-3">
-          <label for="week" class="form-label">年週方塊</label>
-          <input type="week" name="week" value="" class="form-control" id="week">
-        </div>
-
-        <!-- input color 顏色選擇器-->
-        <div class="col-sm-3 mb-3">
-          <label for="color" class="form-label">顏色選擇器</label>
-          <input type="color" name="color" value='#000000' class="form-control" id="color">
-        </div>
-
-        <!-- input number 數字方塊-->
-        <div class="col-sm-3 mb-3">
-          <label for="number" class="form-label">數字方塊</label>
-          <input type="number" name="number" value="" class="form-control" id="number">
-        </div>
-
-        <!-- input search 搜尋方塊-->
-        <div class="col-sm-3 mb-3">
-          <label for="search" class="form-label">搜尋方塊</label>
-          <input type="search" name="search" value="" class="form-control" id="search">
-        </div>
-
-        <!-- input range 滑動方塊-->
-        <div class="col-sm-3 mb-3">
-          <label for="range" class="form-label">滑動方塊</label>
-          <input type="range" name="range" value="" class="form-control" id="range" min="0" max="100" value="90" step="1">
-        </div>
 
         <!-- 單選 -->
         <div class="col-sm-12 mb-3">
@@ -206,7 +153,7 @@
           type: 'url',
           name: 'url',
           value: '',
-          valid: 'required', //required
+          valid: '', //required
           option: '',
           width: '3'
         },
@@ -220,11 +167,11 @@
           width: '3'
         },
         {
-          label: 'Password',
+          label: '密碼',
           type: 'password',
           name: 'password',
           value: '',
-          valid: '', //required
+          valid: 'required', //required
           option: '',
           width: '3'
         },
@@ -259,7 +206,7 @@
           label: '顏色選擇器',
           type: 'color',
           name: 'color',
-          value: '',
+          value: '#000000',
           valid: '', //required
           option: '',
           width: '3'
@@ -298,7 +245,17 @@
       // let c = "000"+ a +"qwe" ;
       // console.log(c);
       for(let i in stru){
-        if(stru[i]['type'] === 'text' || stru[i]['type'] === 'url'){//簡答
+        if(stru[i]['type'] === 'text'      ||
+           stru[i]['type'] === 'url'       ||
+           stru[i]['type'] === 'email'     ||
+           stru[i]['type'] === 'password'  ||
+           stru[i]['type'] === 'date'      ||
+           stru[i]['type'] === 'month'     ||
+           stru[i]['type'] === 'week'      ||
+           stru[i]['type'] === 'number'    ||
+           stru[i]['type'] === 'color'     ||
+           stru[i]['type'] === 'search'
+           ){//簡答
           form_item_html += `
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
