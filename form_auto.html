@@ -46,25 +46,6 @@
 
 
 
-        <!-- 單選 -->
-        <div class="col-sm-12 mb-3">
-          <label class="form-label w-100">單選</label>
-
-          <div class="form-check form-check-inline">
-            <input type="radio" name="radio" value="單選1" class="form-check-input" id="radio_1" required>
-            <label class="form-check-label" for="radio_1">單選1</label>
-          </div>
-
-          <div class="form-check form-check-inline">
-            <input type="radio" name="radio" value="單選2" class="form-check-input" id="radio_2">
-            <label class="form-check-label" for="radio_2">單選2</label>
-          </div>
-
-          <div class="form-check form-check-inline">
-            <input type="radio" name="radio" value="單選3" class="form-check-input" id="radio_3">
-            <label class="form-check-label" for="radio_3">單選3</label>
-          </div>
-        </div>
 
         <!-- 多選 -->
         <div class="col-sm-12 mb-3">
@@ -236,7 +217,7 @@
           value: '',
           valid: '', //required
           option: '單選1|單選2|單選3',
-          width: '12'
+          width: '6'
         },
       ];
       let form_item = document.getElementById('form_item');
@@ -261,6 +242,28 @@
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
+        }else if(stru[i]['type'] === 'radio'){
+
+          form_item_html += `
+            <div class="col-sm-12 mb-3">
+              <label class="form-label w-100">單選</label>
+
+              <div class="form-check form-check-inline">
+                <input type="radio" name="radio" value="單選1" class="form-check-input" id="radio_1" required>
+                <label class="form-check-label" for="radio_1">單選1</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input type="radio" name="radio" value="單選2" class="form-check-input" id="radio_2">
+                <label class="form-check-label" for="radio_2">單選2</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input type="radio" name="radio" value="單選3" class="form-check-input" id="radio_3">
+                <label class="form-check-label" for="radio_3">單選3</label>
+              </div>
+            </div>`;
+
         }
 
       }
