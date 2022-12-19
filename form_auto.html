@@ -211,17 +211,18 @@
           width: '3'
         },
         {
-          label: '單選',
+          label: '便當',
           type: 'radio',
           name: 'radio',
           value: '',
           valid: '', //required
-          option: '單選1|單選2|單選3',
+          option: '雞腿|排骨|招牌',
           width: '6'
         },
       ];
       let form_item = document.getElementById('form_item');
       let form_item_html = '';
+      let options;
       // let a = "123abc";
       // let c = "000"+ a +"qwe" ;
       // console.log(c);
@@ -243,10 +244,12 @@
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
         }else if(stru[i]['type'] === 'radio'){
+          options = stru[i]['option'].split('|');
+          console.log(options);
 
           form_item_html += `
-            <div class="col-sm-12 mb-3">
-              <label class="form-label w-100">單選</label>
+            <div class="col-sm-${stru[i]['width']} mb-3">
+              <label class="form-label w-100">${stru[i]['label']}</label>
 
               <div class="form-check form-check-inline">
                 <input type="radio" name="radio" value="單選1" class="form-check-input" id="radio_1" required>
@@ -267,7 +270,7 @@
         }
 
       }
-      console.log(form_item_html);
+      // console.log(form_item_html);
 
       form_item.innerHTML = form_item_html;
 
