@@ -204,7 +204,7 @@
           value: '',
           valid: '',
           option: '',
-          width: '3'
+          width: '6'
         },
         {
           label: '網址',
@@ -298,19 +298,23 @@
         },
       ];
       let form_item = document.getElementById('form_item');
-      console.log(form_item);
       let form_item_html = '';
+      // let a = "123abc";
+      // let c = "000"+ a +"qwe" ;
+      // console.log(c);
       for(let i in stru){
         if(stru[i]['type'] === 'text'){//簡答
           form_item_html = `
-            <div class="col-sm-3 mb-3">
+            <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="name" class="form-label">姓名</label>
               <input type="text" name="name" value="" class="form-control" id="name" required>
             </div>`;
         }
 
       }
-      form_item.innerHTML = form_item_html
+      console.log(form_item_html);
+
+      form_item.innerHTML = form_item_html;
 
 
 
