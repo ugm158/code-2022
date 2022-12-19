@@ -44,11 +44,6 @@
     <form action="https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec" method="post">
       <div class="row">
 
-        <!-- input url 網址 -->
-        <div class="col-sm-3 mb-3">
-          <label for="url" class="form-label">網址</label>
-          <input type="url" name="url" value="" class="form-control" id="url">
-        </div>
 
         <!-- input email EMAIL-->
         <div class="col-sm-3 mb-3">
@@ -202,7 +197,7 @@
           type: 'text',
           name: 'name1',
           value: '',
-          valid: 'required',//required
+          valid: '',//required
           option: '',
           width: '3'
         },
@@ -211,7 +206,7 @@
           type: 'url',
           name: 'url',
           value: '',
-          valid: '', //required
+          valid: 'required', //required
           option: '',
           width: '3'
         },
@@ -303,8 +298,8 @@
       // let c = "000"+ a +"qwe" ;
       // console.log(c);
       for(let i in stru){
-        if(stru[i]['type'] === 'text' ){//簡答
-          form_item_html = `
+        if(stru[i]['type'] === 'text' || stru[i]['type'] === 'url'){//簡答
+          form_item_html += `
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
