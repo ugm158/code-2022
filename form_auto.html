@@ -198,13 +198,13 @@
       // 整理出來的結構資料
 
       let stru = [{
-          label: '姓名123',
+          label: '姓名',
           type: 'text',
-          name: 'name',
+          name: 'name1',
           value: '',
-          valid: '',
+          valid: 'required',//required
           option: '',
-          width: '6'
+          width: '3'
         },
         {
           label: '網址',
@@ -303,11 +303,11 @@
       // let c = "000"+ a +"qwe" ;
       // console.log(c);
       for(let i in stru){
-        if(stru[i]['type'] === 'text'){//簡答
+        if(stru[i]['type'] === 'text' ){//簡答
           form_item_html = `
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="text" name="${stru[i]['name']}" value="" class="form-control" id="${stru[i]['name']}" required>
+              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
         }
 
