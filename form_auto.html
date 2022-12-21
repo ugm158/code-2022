@@ -217,7 +217,7 @@
           value: '',
           valid: 'required', //required
           option: '行政|訓導|總務',
-          width: '6'
+          width: '3'
         },
       ];
       let form_item = document.getElementById('form_item');
@@ -285,7 +285,7 @@
           }
 
           form_item_html += `
-            <div class="col-sm-6 mb-3">
+            <div class="col-sm-${stru[i]['width']} mb-3">
               <label class="form-label">${stru[i]['label']}</label>
               <select name="${stru[i]['name']}" class="form-select" id="${stru[i]['name']}" ${stru[i]['valid']}>
                ${options_html}
