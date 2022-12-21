@@ -277,18 +277,12 @@
           // 2.將 stru[i]['option'] => 陣列 ['下拉選單1', '下拉選單2', '下拉選單3']
           // 3.跑迴圈
           // stru[i]['option'] => '行政|訓導|總務'
-
-          console.log(stru[i]['option']);
-
-
           options = stru[i]['option'].split('|');
-          console.log(options);
           options_html = '';
           for(let j in options){
             options_html += `
               <option value="${options[j]}">${options[j]}</option>`;
           }
-
 
           form_item_html += `
             <div class="col-sm-6 mb-3">
