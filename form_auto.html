@@ -316,10 +316,11 @@
         }else if(stru[i]['type'] === 'checkbox'){
           options = stru[i]['option'].split('|');
           options_html = '';
+          let required = stru[i]['valid'] ? `oninput="alert('error')"` : '';
           for(let j in options){
             options_html += `
               <div class="form-check form-check-inline">
-                <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${options[j]}" class="form-check-input" id="${stru[i]['name']}_${j}" ${stru[i]['valid']} oninput="alert('error')">
+                <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${options[j]}" class="form-check-input" id="${stru[i]['name']}_${j}" ${stru[i]['valid']} ${required}>
                 <label class="form-check-label" for="${stru[i]['name']}_${j}">${options[j]}</label>
               </div>`;
           };
