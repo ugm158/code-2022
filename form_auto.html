@@ -211,7 +211,7 @@
           type: 'checkbox',
           name: 'checkbox',
           value: '',
-          valid: '', //required
+          valid: 'required', //required
           option: '學科|術科',
           width: '12'
         },
@@ -316,7 +316,9 @@
         }else if(stru[i]['type'] === 'checkbox'){
           options = stru[i]['option'].split('|');
           options_html = '';
+          //三元運算
           let required = stru[i]['valid'] ? `oninput="alert('error')"` : '';
+
           for(let j in options){
             options_html += `
               <div class="form-check form-check-inline">
