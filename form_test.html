@@ -45,8 +45,6 @@
       <div class="row">
 
 
-
-
         <!-- 多選 -->
         <div class="col-sm-12 mb-3">
           <label class="form-label w-100">多選</label>
@@ -67,14 +65,21 @@
           </div>
         </div>
 
-
+        <!-- 下拉選單(多選) -->
+        <div class="col-sm-6 mb-3">
+          <label class="form-label">下拉選單(多選)</label>
+          <select name="select_m" class="form-select" id="select_m" multiple>
+            <option value="下拉選單(多選)1">下拉選單(多選)1</option>
+            <option value="下拉選單(多選)2" selected>下拉選單(多選)2</option>
+            <option value="下拉選單(多選)3">下拉選單(多選)3</option>
+          </select>
+        </div>
 
         <!-- 文字區域(多行) -->
         <div class="col-sm-12 mb-3">
           <label class="form-label">文字區域</label>
           <textarea name="textarea" class="form-control" id="textarea" rows="5" required>文字區域123</textarea>
         </div>
-
       </div>
 
 
@@ -102,13 +107,13 @@
       box.insertAdjacentHTML("afterend", "<div class='text-center mt-3'>container寬度：" + box.clientWidth + "px</div>" + "<div class='text-center mt-3'>網頁可見區域寬：" + document.body.clientWidth + "px</div>");
 
       // 整理出來的結構資料
-      // stru[0]['label']
+
       let stru = [{
-          label: '姓名',
+          label: '姓名*',
           type: 'text',
-          name: 'name1',
+          name: 'name',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
           width: '3'
         },
@@ -126,16 +131,16 @@
           type: 'email',
           name: 'email',
           value: '',
-          valid: '', //required
+          valid: 'required', //required
           option: '',
           width: '3'
         },
         {
-          label: '密碼',
+          label: 'Password',
           type: 'password',
           name: 'password',
           value: '',
-          valid: 'required', //required
+          valid: '', //required
           option: '',
           width: '3'
         },
@@ -194,140 +199,98 @@
           width: '3'
         },
         {
-          label: '便當',
+          label: '單選',
           type: 'radio',
           name: 'radio',
           value: '',
           valid: 'required', //required
-          option: '雞腿|排骨|招牌',
-          width: '6'
+          option: '單選1|單選2|單選3',
+          width: '12'
         },
         {
-          label: '單位',
+          label: '下拉選單',
           type: 'select',
-          name: 'unit',
+          name: 'select',
           value: '',
-          valid: 'required', //required
-          option: '行政|訓導|總務',
-          width: '3'
-        },
-        {
-          label: '地區',
-          type: 'select_m',
-          name: 'area',
-          value: '',
-          valid: 'required', //required
-          option: '台南|高雄|屏東',
-          width: '3'
+          valid: '', //required
+          option: '下拉選單1|下拉選單2|下拉選單3',
+          width: '6'
         },
       ];
       let form_item = document.getElementById('form_item');
       let form_item_html = options_html = '';
       let options;
-      // let a = "123abc";
-      // let c = "000"+ a +"qwe" ;
-      // console.log(c);
-      for(let i in stru){
-        if(stru[i]['type'] === 'text'      ||
-           stru[i]['type'] === 'url'       ||
-           stru[i]['type'] === 'email'     ||
-           stru[i]['type'] === 'password'  ||
-           stru[i]['type'] === 'date'      ||
-           stru[i]['type'] === 'month'     ||
-           stru[i]['type'] === 'week'      ||
-           stru[i]['type'] === 'number'    ||
-           stru[i]['type'] === 'color'     ||
-           stru[i]['type'] === 'search'
-           ){//簡答
+      for (let i in stru) {
+        if (stru[i]['type'] === 'text' ||
+          stru[i]['type'] === 'url' ||
+          stru[i]['type'] === 'email' ||
+          stru[i]['type'] === 'password' ||
+          stru[i]['type'] === 'date' ||
+          stru[i]['type'] === 'month' ||
+          stru[i]['type'] === 'week' ||
+          stru[i]['type'] === 'color' ||
+          stru[i]['type'] === 'number' ||
+          stru[i]['type'] === 'search'
+        ) { //簡答
           form_item_html += `
+            <!-- input text 文字方塊(單行) -->
             <div class="col-sm-${stru[i]['width']} mb-3">
-              <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-              <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
+            <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
+            <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'radio'){
+        } else if (stru[i]['type'] === 'radio') {
           options = stru[i]['option'].split('|');
           options_html = '';
           /*
-            ['雞腿', '排骨', '招牌']
-            options[0]
-            options[1]
-            options[2]
-            options[j]
+              ['單選1','單選2','單選3']
           */
-          for(let j in options){
+          for (let j in options) {
             // 三元運算
-            let required = (j=='0') ? stru[i]['valid'] : '';
+            let required = (j == '0') ? stru[i]['valid'] : '';
             options_html += `
               <div class="form-check form-check-inline">
                 <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${options[j]}" class="form-check-input" id="${stru[i]['name']}_${j}" ${required}>
                 <label class="form-check-label" for="${stru[i]['name']}_${j}">${options[j]}</label>
               </div>`;
           };
-
-          // console.log(options_html);
-          //跑迴圈
-          //選項html
           form_item_html += `
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label class="form-label w-100">${stru[i]['label']}</label>
               ${options_html}
             </div>`;
-
-        }else if(stru[i]['type'] === 'select'){
-          // 1.首先替換 變數
-          // 2.將 stru[i]['option'] => 陣列 ['下拉選單1', '下拉選單2', '下拉選單3']
-          // 3.跑迴圈
-          // stru[i]['option'] => '行政|訓導|總務'
+        } else if (stru[i]['type'] === 'select') {
           options = stru[i]['option'].split('|');
           options_html = '';
-          for(let j in options){
+          for (let j in options) {
             options_html += `
-              <option value="${options[j]}">${options[j]}</option>`;
+            <option value="${options[j]}">${options[j]}</option>`;
           }
 
           form_item_html += `
-            <div class="col-sm-${stru[i]['width']} mb-3">
+            <div class="col-sm-6 mb-3">
               <label class="form-label">${stru[i]['label']}</label>
               <select name="${stru[i]['name']}" class="form-select" id="${stru[i]['name']}" ${stru[i]['valid']}>
-               ${options_html}
+              ${options_html}
               </select>
             </div>`;
-        }else if(stru[i]['type'] === 'select_m'){
-          // 1.首先替換 變數
-          // 2.將 stru[i]['option'] => 陣列 ['下拉選單1', '下拉選單2', '下拉選單3']
-          // 3.跑迴圈
-          // stru[i]['option'] => '行政|訓導|總務'
-          options = stru[i]['option'].split('|');
-          options_html = '';
-          for(let j in options){
-            options_html += `
-              <option value="${options[j]}">${options[j]}</option>`;
-          }
 
-          form_item_html += `
-            <div class="col-sm-${stru[i]['width']} mb-3">
-              <label class="form-label">${stru[i]['label']}</label>
-              <select name="${stru[i]['name']}" class="form-select" id="${stru[i]['name']}" ${stru[i]['valid']} multiple >
-               ${options_html}
-              </select>
-            </div>`;
         }
 
+
       }
-      // console.log(form_item_html);
 
       form_item.innerHTML = form_item_html;
-
-
-
-      // let form_item = '';
-      // let option, option_item;
-
-
-      // let form_item_id = document.getElementById('form_item');
-
-      // form_item_id.innerHTML = form_item;
     }
+
+
+
+    // let form_item = '';
+    // let option, option_item;
+
+
+    // let form_item_id = document.getElementById('form_item');
+
+    // form_item_id.innerHTML = form_item;
   </script>
 
 
