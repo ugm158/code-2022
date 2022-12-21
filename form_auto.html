@@ -215,13 +215,13 @@
           type: 'radio',
           name: 'radio',
           value: '',
-          valid: '', //required
+          valid: 'required', //required
           option: '雞腿|排骨|招牌',
           width: '6'
         },
       ];
       let form_item = document.getElementById('form_item');
-      let form_item_html = '';
+      let form_item_html = options_html = '';
       let options;
       // let a = "123abc";
       // let c = "000"+ a +"qwe" ;
@@ -245,28 +245,31 @@
             </div>`;
         }else if(stru[i]['type'] === 'radio'){
           options = stru[i]['option'].split('|');
+          options_html = ''
+          /*
+            ['雞腿', '排骨', '招牌']
+            options[0]
+            options[1]
+            options[2]
+            options[j]
+          */
+          for(let j in options){
+            // 三元運算
+            let required = (j=='0') ? stru[i]['valid'] : '';
+            options_html += `
+              <div class="form-check form-check-inline">
+                <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${options[j]}" class="form-check-input" id="${stru[i]['name']}_${j}" ${required}>
+                <label class="form-check-label" for="${stru[i]['name']}_${j}">${options[j]}</label>
+              </div>`;
+          };
 
-          console.log(options);
+          console.log(options_html);
           //跑迴圈
           //選項html
           form_item_html += `
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label class="form-label w-100">${stru[i]['label']}</label>
-
-              <div class="form-check form-check-inline">
-                <input type="radio" name="radio" value="單選1" class="form-check-input" id="radio_1" required>
-                <label class="form-check-label" for="radio_1">單選1</label>
-              </div>
-
-              <div class="form-check form-check-inline">
-                <input type="radio" name="radio" value="單選2" class="form-check-input" id="radio_2">
-                <label class="form-check-label" for="radio_2">單選2</label>
-              </div>
-
-              <div class="form-check form-check-inline">
-                <input type="radio" name="radio" value="單選3" class="form-check-input" id="radio_3">
-                <label class="form-check-label" for="radio_3">單選3</label>
-              </div>
+              ${options_html}
             </div>`;
 
         }
