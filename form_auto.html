@@ -67,15 +67,6 @@
           </div>
         </div>
 
-        <!-- 下拉選單 -->
-        <div class="col-sm-6 mb-3">
-          <label class="form-label">下拉選單</label>
-          <select name="select" class="form-select" id="select">
-            <option value="下拉選單1">下拉選單1</option>
-            <option value="下拉選單2" selected>下拉選單2</option>
-            <option value="下拉選單3">下拉選單3</option>
-          </select>
-        </div>
 
         <!-- 下拉選單(多選) -->
         <div class="col-sm-6 mb-3">
@@ -119,7 +110,7 @@
       box.insertAdjacentHTML("afterend", "<div class='text-center mt-3'>container寬度：" + box.clientWidth + "px</div>" + "<div class='text-center mt-3'>網頁可見區域寬：" + document.body.clientWidth + "px</div>");
 
       // 整理出來的結構資料
-
+      // stru[0]['label']
       let stru = [{
           label: '姓名',
           type: 'text',
@@ -215,8 +206,17 @@
           type: 'radio',
           name: 'radio',
           value: '',
-          valid: 'required', //required
+          valid: '', //required
           option: '雞腿|排骨|招牌',
+          width: '6'
+        },
+        {
+          label: '下拉選單',
+          type: 'select',
+          name: 'select',
+          value: '',
+          valid: '', //required
+          option: '下拉選單1|下拉選單2|下拉選單3',
           width: '6'
         },
       ];
@@ -263,13 +263,25 @@
               </div>`;
           };
 
-          console.log(options_html);
+          // console.log(options_html);
           //跑迴圈
           //選項html
           form_item_html += `
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label class="form-label w-100">${stru[i]['label']}</label>
               ${options_html}
+            </div>`;
+
+        }else if(stru[i]['type'] === 'select'){
+          form_item_html += `
+            <!-- 下拉選單 -->
+            <div class="col-sm-6 mb-3">
+              <label class="form-label">下拉選單</label>
+              <select name="select" class="form-select" id="select" required>
+                <option value="下拉選單1">下拉選單1</option>
+                <option value="下拉選單2" selected>下拉選單2</option>
+                <option value="下拉選單3">下拉選單3</option>
+              </select>
             </div>`;
 
         }
