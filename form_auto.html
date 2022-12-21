@@ -211,12 +211,12 @@
           width: '6'
         },
         {
-          label: '下拉選單',
+          label: '單位',
           type: 'select',
-          name: 'select',
+          name: 'unit',
           value: '',
           valid: 'required', //required
-          option: '下拉選單1|下拉選單2|下拉選單3',
+          option: '行政|訓導|總務',
           width: '6'
         },
       ];
@@ -276,6 +276,11 @@
           // 1.首先替換 變數
           // 2.將 stru[i]['option'] => 陣列 ['下拉選單1', '下拉選單2', '下拉選單3']
           // 3.跑迴圈
+          // stru[i]['option'] => '行政|訓導|總務'
+
+          console.log(stru[i]['option']);
+
+
           options = stru[i]['option'].split('|');
           console.log(options);
           options_html = '';
@@ -287,7 +292,7 @@
 
           form_item_html += `
             <div class="col-sm-6 mb-3">
-              <label class="form-label">下拉選單</label>
+              <label class="form-label">${stru[i]['label']}</label>
               <select name="${stru[i]['name']}" class="form-select" id="${stru[i]['name']}" ${stru[i]['valid']}>
                ${options_html}
               </select>
