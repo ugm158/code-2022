@@ -57,19 +57,18 @@
 
     </form>
 
-    <form action="" class="border border-primary">
+    <form action="https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec" class="border border-primary" method="post">
       <div class="row" id="form_item">
 
       </div>
 
-      <!-- 隱藏-->
-      <input type="hidden" name='op' value='set_sheet' class="form-control" id="op">
       <button type="submit" class="btn btn-primary w-100" id="submit">送出</button>
     </form>
   </main>
 
   <script>
     window.onload = function() {
+
       let submitBtn = document.getElementById('submit');
       submitBtn.onclick = function() {
 
@@ -85,7 +84,7 @@
           type: 'text',
           name: 'name1',
           value: '',
-          valid: '', //required
+          valid: 'required', //required
           option: '',
           width: '3'
         },
@@ -112,7 +111,7 @@
           type: 'password',
           name: 'password',
           value: '',
-          valid: 'required', //required
+          valid: '', //required
           option: '',
           width: '3'
         },
@@ -175,7 +174,7 @@
           type: 'radio',
           name: 'radio',
           value: '',
-          valid: 'required', //required
+          valid: '', //required
           option: '雞腿|排骨|招牌',
           width: '6'
         },
@@ -184,7 +183,7 @@
           type: 'select',
           name: 'unit',
           value: '',
-          valid: 'required', //required
+          valid: '', //required
           option: '行政|訓導|總務',
           width: '3'
         },
@@ -193,7 +192,7 @@
           type: 'select_m',
           name: 'area',
           value: '',
-          valid: 'required', //required
+          valid: '', //required
           option: '台南|高雄|屏東',
           width: '3'
         },
@@ -202,7 +201,7 @@
           type: '段落',
           name: 'textarea',
           value: '123',
-          valid: 'required', //required
+          valid: '', //required
           option: '',
           width: '12'
         },
@@ -211,10 +210,28 @@
           type: 'checkbox',
           name: 'checkbox',
           value: '',
-          valid: 'required', //required
+          valid: '', //required
           option: '學科|術科',
           width: '12'
         },
+        {
+          label: 'op',
+          type: 'hidden',
+          name: 'op',
+          value: 'set_sheet',
+          valid: '', //required
+          option: '',
+          width: '3'
+        },
+        {
+          label: 'callback_url',
+          type: 'hidden',
+          name: 'callback_url',
+          value: '',
+          valid: '', //required
+          option: '',
+          width: '3'
+        }
       ];
       let form_item = document.getElementById('form_item');
       let form_item_html = options_html = '';
@@ -332,10 +349,17 @@
               <label class="form-label w-100">${stru[i]['label']}</label>
               ${options_html}
             </div>`;
+        } else if (stru[i]['type'] === 'hidden') {
+          form_item_html += `
+            <input type="hidden" name="${stru[i]['name']}" value="${stru[i]['value']}" id="${stru[i]['name']}">`;
         }
 
       }
       form_item.innerHTML = form_item_html;
+      let callback_url = document.getElementById('callback_url');
+      callback_url.value = window.location.href;
+
+
     }
     /*
       渲染畫面
