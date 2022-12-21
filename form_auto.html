@@ -85,7 +85,7 @@
           type: 'text',
           name: 'name1',
           value: '',
-          valid: '',//required
+          valid: '', //required
           option: '',
           width: '3'
         },
@@ -222,24 +222,24 @@
       // let a = "123abc";
       // let c = "000"+ a +"qwe" ;
       // console.log(c);
-      for(let i in stru){
-        if(stru[i]['type'] === 'text'      ||
-           stru[i]['type'] === 'url'       ||
-           stru[i]['type'] === 'email'     ||
-           stru[i]['type'] === 'password'  ||
-           stru[i]['type'] === 'date'      ||
-           stru[i]['type'] === 'month'     ||
-           stru[i]['type'] === 'week'      ||
-           stru[i]['type'] === 'number'    ||
-           stru[i]['type'] === 'color'     ||
-           stru[i]['type'] === 'search'
-           ){//簡答
+      for (let i in stru) {
+        if (stru[i]['type'] === 'text' ||
+          stru[i]['type'] === 'url' ||
+          stru[i]['type'] === 'email' ||
+          stru[i]['type'] === 'password' ||
+          stru[i]['type'] === 'date' ||
+          stru[i]['type'] === 'month' ||
+          stru[i]['type'] === 'week' ||
+          stru[i]['type'] === 'number' ||
+          stru[i]['type'] === 'color' ||
+          stru[i]['type'] === 'search'
+        ) { //簡答
           form_item_html += `
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
               <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
             </div>`;
-        }else if(stru[i]['type'] === 'radio'){
+        } else if (stru[i]['type'] === 'radio') {
           options = stru[i]['option'].split('|');
           options_html = '';
           /*
@@ -249,9 +249,9 @@
             options[2]
             options[j]
           */
-          for(let j in options){
+          for (let j in options) {
             // 三元運算
-            let required = (j=='0') ? stru[i]['valid'] : '';
+            let required = (j == '0') ? stru[i]['valid'] : '';
             options_html += `
               <div class="form-check form-check-inline">
                 <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${options[j]}" class="form-check-input" id="${stru[i]['name']}_${j}" ${required}>
@@ -268,14 +268,14 @@
               ${options_html}
             </div>`;
 
-        }else if(stru[i]['type'] === 'select'){
+        } else if (stru[i]['type'] === 'select') {
           // 1.首先替換 變數
           // 2.將 stru[i]['option'] => 陣列 ['下拉選單1', '下拉選單2', '下拉選單3']
           // 3.跑迴圈
           // stru[i]['option'] => '行政|訓導|總務'
           options = stru[i]['option'].split('|');
           options_html = '';
-          for(let j in options){
+          for (let j in options) {
             options_html += `
               <option value="${options[j]}">${options[j]}</option>`;
           }
@@ -287,14 +287,14 @@
                ${options_html}
               </select>
             </div>`;
-        }else if(stru[i]['type'] === 'select_m'){
+        } else if (stru[i]['type'] === 'select_m') {
           // 1.首先替換 變數
           // 2.將 stru[i]['option'] => 陣列 ['下拉選單1', '下拉選單2', '下拉選單3']
           // 3.跑迴圈
           // stru[i]['option'] => '行政|訓導|總務'
           options = stru[i]['option'].split('|');
           options_html = '';
-          for(let j in options){
+          for (let j in options) {
             options_html += `
               <option value="${options[j]}">${options[j]}</option>`;
           }
@@ -306,20 +306,20 @@
                ${options_html}
               </select>
             </div>`;
-        }else if(stru[i]['type'] === '段落'){
+        } else if (stru[i]['type'] === '段落') {
 
           form_item_html += `
             <div class="col-sm-${stru[i]['width']} mb-3">
               <label class="form-label">${stru[i]['label']}</label>
               <textarea name="${stru[i]['name']}" class="form-control" id="${stru[i]['name']}" rows="5" ${stru[i]['valid']}>${stru[i]['value']}</textarea>
             </div>`;
-        }else if(stru[i]['type'] === 'checkbox'){
+        } else if (stru[i]['type'] === 'checkbox') {
           options = stru[i]['option'].split('|');
           options_html = '';
           //三元運算
           let required = stru[i]['valid'] ? `oninput="renderCheckbox('${stru[i]['name']}')"` : '';
 
-          for(let j in options){
+          for (let j in options) {
             options_html += `
               <div class="form-check form-check-inline">
                 <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${options[j]}" class="form-check-input" id="${stru[i]['name']}_${j}" ${stru[i]['valid']} ${required}>
@@ -340,36 +340,45 @@
     /*
       渲染畫面
     */
-    function renderCheckbox(name){
-      removeRequired(name);
-      setRequired(name);
+    function renderCheckbox(name) {
+      if (isAtLeastOneChecked(name)) {
+        removeRequired(name);
+      } else {
+        setRequired(name);
+      }
     }
-
-    /*
-      設定屬性 required
-    */
-   function setRequired(name){
-    let checkboxes = Array.from(document.getElementsByName(name));
-    for(let i in checkboxes){
-      checkboxes[i].setAttribute('required', true);
-    }
-   }
-
-    /*=============================
-      移除屬性 required
-    ===============================*/
-   function removeRequired(name){
-    let checkboxes = Array.from(document.getElementsByName(name));
-    for(let i in checkboxes){
-      checkboxes[i].removeAttribute('required');
-    }
-   }
 
     /*
       判斷是否有勾選
     */
+    function isAtLeastOneChecked(name) {
+      let checkboxes = Array.from(document.getElementsByName(name));
 
+      return checkboxes.some(function(item) {
+        return item.checked;
+      });
+    }
 
+    /*=============================
+      設定屬性 required
+    ===============================*/
+    function setRequired(name) {
+      let checkboxes = Array.from(document.getElementsByName(name));
+      for (let i in checkboxes) {
+        checkboxes[i].setAttribute('required', true);
+      }
+    }
+
+    /*=============================
+      移除屬性 required
+    ===============================*/
+    function removeRequired(name) {
+      let checkboxes = Array.from(document.getElementsByName(name));
+      for (let i in checkboxes) {
+        checkboxes[i].removeAttribute('required');
+      }
+    }
   </script>
 </body>
+
 </html>
