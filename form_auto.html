@@ -215,7 +215,7 @@
           type: 'select',
           name: 'select',
           value: '',
-          valid: '', //required
+          valid: 'required', //required
           option: '下拉選單1|下拉選單2|下拉選單3',
           width: '6'
         },
@@ -245,7 +245,7 @@
             </div>`;
         }else if(stru[i]['type'] === 'radio'){
           options = stru[i]['option'].split('|');
-          options_html = ''
+          options_html = '';
           /*
             ['雞腿', '排骨', '招牌']
             options[0]
@@ -273,14 +273,23 @@
             </div>`;
 
         }else if(stru[i]['type'] === 'select'){
+          // 1.首先替換 變數
+          // 2.將 stru[i]['option'] => 陣列 ['下拉選單1', '下拉選單2', '下拉選單3']
+          // 3.跑迴圈
+          options = stru[i]['option'].split('|');
+          console.log(options);
+          options_html = '';
+          for(let j in options){
+            options_html += `
+              <option value="${options[j]}">${options[j]}</option>`;
+          }
+
+
           form_item_html += `
-            <!-- 下拉選單 -->
             <div class="col-sm-6 mb-3">
               <label class="form-label">下拉選單</label>
-              <select name="select" class="form-select" id="select" required>
-                <option value="下拉選單1">下拉選單1</option>
-                <option value="下拉選單2" selected>下拉選單2</option>
-                <option value="下拉選單3">下拉選單3</option>
+              <select name="${stru[i]['name']}" class="form-select" id="${stru[i]['name']}" ${stru[i]['valid']}>
+               ${options_html}
               </select>
             </div>`;
 
