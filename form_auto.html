@@ -317,7 +317,7 @@
           options = stru[i]['option'].split('|');
           options_html = '';
           //三元運算
-          let required = stru[i]['valid'] ? `oninput="alert('error')"` : '';
+          let required = stru[i]['valid'] ? `oninput="renderCheckbox('${stru[i]['name']}')"` : '';
 
           for(let j in options){
             options_html += `
@@ -335,23 +335,35 @@
         }
 
       }
-      // console.log(form_item_html);
-
       form_item.innerHTML = form_item_html;
-
-
-
-      // let form_item = '';
-      // let option, option_item;
-
-
-      // let form_item_id = document.getElementById('form_item');
-
-      // form_item_id.innerHTML = form_item;
     }
+    /*
+      渲染畫面
+    */
+    function renderCheckbox(name){
+      removeRequired(name);
+    }
+
+    /*
+      設定屬性 required
+    */
+
+    /*=============================
+      移除屬性 required
+    ===============================*/
+   function removeRequired(name){
+    let checkboxes = Array.from(document.getElementsByName(name));
+    for(let i in checkboxes){
+      checkboxes[i].removeAttribute('required');
+    }
+
+   }
+
+    /*
+      判斷是否有勾選
+    */
+
+
   </script>
-
-
 </body>
-
 </html>
