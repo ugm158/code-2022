@@ -48,24 +48,6 @@
 
 
         <!-- 多選 -->
-        <div class="col-sm-12 mb-3">
-          <label class="form-label w-100">多選</label>
-
-          <div class="form-check form-check-inline">
-            <input type="checkbox" name="checkbox" value="" class="form-check-input checkbox" id="checkbox_1">
-            <label class="form-check-label" for="checkbox_1">多選1</label>
-          </div>
-
-          <div class="form-check form-check-inline">
-            <input type="checkbox" name="checkbox" value="多選2" class="form-check-input checkbox" id="checkbox_2" checked>
-            <label class="form-check-label" for="checkbox_2">多選2</label>
-          </div>
-
-          <div class="form-check form-check-inline">
-            <input type="checkbox" name="checkbox" value="多選3" class="form-check-input checkbox" id="checkbox_3">
-            <label class="form-check-label" for="checkbox_3">多選3</label>
-          </div>
-        </div>
 
 
 
@@ -321,6 +303,26 @@
             <div class="col-sm-12${stru[i]['width']} mb-3">
               <label class="form-label">${stru[i]['label']}</label>
               <textarea name="${stru[i]['name']}" class="form-control" id="${stru[i]['name']}" rows="5" ${stru[i]['valid']}>${stru[i]['value']}</textarea>
+            </div>`;
+        }else if(stru[i]['type'] === 'checkbox'){
+          form_item_html += `
+            <div class="col-sm-12 mb-3">
+              <label class="form-label w-100">多選</label>
+
+              <div class="form-check form-check-inline">
+                <input type="checkbox" name="checkbox" value="" class="form-check-input checkbox" id="checkbox_1">
+                <label class="form-check-label" for="checkbox_1">多選1</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input type="checkbox" name="checkbox" value="多選2" class="form-check-input checkbox" id="checkbox_2" checked>
+                <label class="form-check-label" for="checkbox_2">多選2</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input type="checkbox" name="checkbox" value="多選3" class="form-check-input checkbox" id="checkbox_3">
+                <label class="form-check-label" for="checkbox_3">多選3</label>
+              </div>
             </div>`;
         }
 
