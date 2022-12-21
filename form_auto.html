@@ -342,11 +342,18 @@
     */
     function renderCheckbox(name){
       removeRequired(name);
+      setRequired(name);
     }
 
     /*
       設定屬性 required
     */
+   function setRequired(name){
+    let checkboxes = Array.from(document.getElementsByName(name));
+    for(let i in checkboxes){
+      checkboxes[i].setAttribute('required', true);
+    }
+   }
 
     /*=============================
       移除屬性 required
@@ -356,7 +363,6 @@
     for(let i in checkboxes){
       checkboxes[i].removeAttribute('required');
     }
-
    }
 
     /*
