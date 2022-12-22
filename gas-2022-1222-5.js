@@ -1,5 +1,6 @@
+
 /*=====================================
-  20221222
+  20221222-5
 =====================================*/
 function test() {
   //取得試算表
@@ -11,23 +12,14 @@ function test() {
 
   //整理資料 stru
   //跑迴圈
-  let data = ['單位', '日期', '金額', '其他'];
+  let data = ['單位1', '日期1', '金額1', '其他1','備註'];
   let rowIndex = 1;
   let colIndex;
   for (let i = 0; i < data.length; i++) {
     //寫資料
-    range = ws.getRange(1, 1);
-    range.setValue('單位');
+    colIndex = i+1;
+    range = ws.getRange(rowIndex, colIndex);
+    range.setValue(data[i]);
   }
 
-
-
-}
-
-  //寫資料
-  range = ws.getRange(1, 4);
-  range.setValue('其他');
-
-
-  console.log(ws);
 }
