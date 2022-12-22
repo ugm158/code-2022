@@ -12,14 +12,26 @@ function test() {
 
   //整理資料 stru
   //跑迴圈
-  let data = ['單位1', '日期1', '金額1', '其他1','備註'];
+  let data = ['單位2', '日期2', '金額2', '其他2','備註2'];
   let rowIndex = 1;
   let colIndex;
-  for (let i = 0; i < data.length; i++) {
+  /**
+   * 字串 轉 數字 parseInt() Number()
+   */
+  for(let i in data){
     //寫資料
-    colIndex = i+1;
+    colIndex = parseInt(i)+1;//
     range = ws.getRange(rowIndex, colIndex);
     range.setValue(data[i]);
   }
+
+
+  // for (let i = 0; i < data.length; i++) {
+  //   //寫資料
+  //   colIndex = i+1;
+  //   range = ws.getRange(rowIndex, colIndex);
+  //   range.setValue(data[i]);
+  // }
+
 
 }
