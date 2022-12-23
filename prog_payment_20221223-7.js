@@ -102,5 +102,12 @@ function payment(e) {
     range.setValue(e['parameter'][stru_payment[i]['name']]);
   }
 
+  // 第7節課
+  let content = '';
+  content += Sheet.render('payment', {}, '');
+
+  // 渲染網頁
+  return Sheet.render('index', {content: content}, '繳費通知單');
+
 
 }
