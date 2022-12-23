@@ -11,7 +11,7 @@ function setup() {
   create_global();
 
   // 商品類別
-  create_prod_kind();
+  // create_prod_kind();
 
   // 繳費通知單
   create_payment();
