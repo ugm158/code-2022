@@ -13,8 +13,9 @@ function doPost(e) {
   if (global['isAdmin'] === true) {
 
   }
-
   //--------------------------------------------------------管理員路由 end
+
+  Route.path("payment", payment);//嵌入網址
 
   if (Route[e.parameter.op]) {
     return Route[e.parameter.op](e);
