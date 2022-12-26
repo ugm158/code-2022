@@ -12,6 +12,7 @@
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
+  <!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
 
   <title>表單</title>
@@ -80,7 +81,7 @@
           type: 'date',
           name: 'date',
           value: '',
-          valid: 'required min="2022-12-26" max="2022-12-31"', //required
+          valid: 'required', //required
           option: '',
           width: '3'
         },
@@ -224,6 +225,14 @@
 
       }
       form_item.innerHTML = form_item_html;
+
+      //dom ->
+      // $("#date").prop('min','2022-12-26');
+      // $("#date").prop('max','2022-12-31');
+      $("#date").prop({
+        min: '2022-12-26',
+        max:'2023-01-10'
+      });
 
       let callback_url = document.getElementById('callback_url');
       callback_url.value = window.location.href;
