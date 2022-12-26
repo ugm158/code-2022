@@ -66,7 +66,10 @@
       box.insertAdjacentHTML("afterend", "<div class='text-center mt-3'>container寬度：" + box.clientWidth + "px</div>" + "<div class='text-center mt-3'>網頁可見區域寬：" + document.body.clientWidth + "px</div>");
 
       // 取得結構資料
-      let url = 'https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec';
+      // let url = 'https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec';
+
+      //17
+      let url = 'https://script.google.com/macros/s/AKfycbzJYXRQcIWxUjPPbFtxd8da3Q2bNZ2j9p4DROe67lVfjz_JLcJs_KzMN8ZMIaDliBJB/exec'
 
       let data = {
         op: 'api_stru_payment'
@@ -79,12 +82,13 @@
         data: data,                 // 如果需要傳送資料時，則將資料設定在這裡
         method: 'GET',              // 請求資料的方式(Ex:POST / GET / PUT...等)
         dataType: 'json',           // 請求資料的類型(Ex:xml, json, script, or html...等)
-        async: false,               // 預設是true=非同步,false=同步 (true時整行可省略)
+        async: true,               // 預設是true=非同步,false=同步 (true時整行可省略)
         beforeSend: function(){     // 發送請求前執行的動作
           //......
         },
         success: function(result) { // 當成功接收到資料時
           stru = result;
+          console.log(stru);
         },
         error: function(error){     // 當接收資料失敗時
           console.log(error);
@@ -92,12 +96,18 @@
         }
       });
 
+
+
+      // -----變成函數 create_template(target_id, stru)
+
       let form_item = document.getElementById('form_item');
       let form_item_html = options_html = '';
       let options;
       // let a = "123abc";
       // let c = "000"+ a +"qwe" ;
       // console.log(c);
+
+
       for (let i in stru) {
         if (stru[i]['type'] === 'text' ||
           stru[i]['type'] === 'url' ||
@@ -214,6 +224,9 @@
       }
       form_item.innerHTML = form_item_html;
 
+
+
+
       // dom ->
       // $("#date").prop('min','2022-12-26');
       // $("#date").prop('max','2022-12-31');
@@ -226,13 +239,13 @@
       let callback_url = document.getElementById('callback_url');
       callback_url.value = window.location.href;
 
+      //----------------------------------------結束
 
     }
+    // 樣版語法
 
-    $(function() {
 
 
-    })
     /*
       渲染畫面
     */
