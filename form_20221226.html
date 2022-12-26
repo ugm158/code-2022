@@ -86,7 +86,16 @@
         },
         success: function(result) { // 當成功接收到資料時
           let stru = result;
+          // 產生表單語法
           create_template('form_item', stru);
+
+          $("#date").prop({
+            min: '2022-12-26',
+            max: '2023-01-10'
+          });
+
+          let callback_url = document.getElementById('callback_url');
+          callback_url.value = window.location.href;
 
 
         },
@@ -237,13 +246,6 @@
       // $("#date").prop('min','2022-12-26');
       // $("#date").prop('max','2022-12-31');
       // val()
-      $("#date").prop({
-        min: '2022-12-26',
-        max: '2023-01-10'
-      });
-
-      let callback_url = document.getElementById('callback_url');
-      callback_url.value = window.location.href;
 
       //----------------------------------------結束
 
