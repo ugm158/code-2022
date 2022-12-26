@@ -66,6 +66,13 @@
       box.insertAdjacentHTML("afterend", "<div class='text-center mt-3'>container寬度：" + box.clientWidth + "px</div>" + "<div class='text-center mt-3'>網頁可見區域寬：" + document.body.clientWidth + "px</div>");
 
       // 取得結構資料
+      let url = 'https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec';
+
+      let data = {
+        op: 'api_stru_payment'
+      }
+
+      let stru;
 
       $.ajax({
         url: url,                   // 請求資料的網址
@@ -80,6 +87,7 @@
           stru = result;
         },
         error: function(error){     // 當接收資料失敗時
+          console.log(error);
           //......
         }
       });
