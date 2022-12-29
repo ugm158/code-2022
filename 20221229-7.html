@@ -11,14 +11,14 @@
  -->
  <h1 class='text-center my-5'>繳費通知單</h1>
  <div class='row'>
-
-   <div class="col-sm-3 mb-3">
-     <label class="form-label">繳費單位</label>
-     <div class="form-control">
-       <?= e['parameter']['unit'] ?>
+   <? for(let i in stru_payment){ ?>
+     <div class="col-sm-<?= stru_payment[i]['width'] ?> mb-3">
+       <label class="form-label"><?= stru_payment[i]['label'] ?></label>
+       <div class="form-control">
+         <?= e['parameter'][stru_payment[i]['name']] ?>
+       </div>
      </div>
-   </div>
-
+   <? } ?>
  </div>
 
  <a href='<?!= e.parameter.callback_url ?>' class="btn btn-success">返回表單</a>
