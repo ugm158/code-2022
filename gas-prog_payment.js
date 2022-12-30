@@ -37,6 +37,15 @@ function get_stru_payment() {
     valid: '', //required
     option: '',
     width: '3'
+  },
+  {
+    label: '備註',
+    type: 'text',
+    name: 'note',
+    value: '',
+    valid: '', //required
+    option: '',
+    width: '12'
   }
   ];
 
@@ -75,7 +84,6 @@ function create_payment(sheet='繳費通知單') {
   繳費通知 主程式
 =====================================*/
 function payment(e) {
-  console.log(e);
   //取得試算表
   let ss = SpreadsheetApp.getActiveSpreadsheet();
   //取得工作表
@@ -92,8 +100,10 @@ function payment(e) {
 
   let rowIndex = ws.getLastRow() + 1;
   let colIndex;
+
   /**
    * 字串 轉 數字 parseInt() Number()
+   * 寫入儲存格
    */
   for (let i in stru_payment) {
     //寫資料
@@ -101,6 +111,10 @@ function payment(e) {
     range = ws.getRange(rowIndex, colIndex);
     range.setValue(e['parameter'][stru_payment[i]['name']]);
   }
+
+  // 通知 line
+  let token = 'gUtvT7W1MjTOMDY1QGZnhN6ekrfTtkdvRcTYouWWcAK';//個人通知
+  sendLineNotify(token,message);
 
   // 第7節課
   let content = '';
