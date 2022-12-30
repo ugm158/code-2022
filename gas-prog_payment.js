@@ -105,11 +105,15 @@ function payment(e) {
    * 字串 轉 數字 parseInt() Number()
    * 寫入儲存格
    */
+  let message = '繳費通知單\n\n';
   for (let i in stru_payment) {
     //寫資料
     colIndex = parseInt(i) + 1;//
     range = ws.getRange(rowIndex, colIndex);
     range.setValue(e['parameter'][stru_payment[i]['name']]);
+
+    //line 通知訊息
+    message += stru_payment[i]['label'] + "： " + e['parameter'][stru_payment[i]['name']] + '\n';
   }
 
   // 通知 line
