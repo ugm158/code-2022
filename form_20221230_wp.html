@@ -10,6 +10,10 @@
 
 
   <style>
+    .form-control {
+      padding: 0.375rem 0.75rem !important;
+    }
+
     input:invalid,
     select:invalid,
     textarea:invalid {
@@ -45,6 +49,7 @@
       </div>
       <input type="hidden" name="op" value="payment" id="op">
       <input type="hidden" name="callback_url" value="" id="callback_url">
+      <input type="hidden" name="callback_home_url" value="" id="callback_home_url">
       <button type="submit" class="btn btn-primary w-100" id="submit">送出</button>
     </form>
   </main>
@@ -62,7 +67,6 @@
 
       // 取得結構資料
       let url = 'https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec';
-
 
       //設定表單 action
       $('#myForm').prop('action', url);
@@ -92,8 +96,14 @@
             max: '2023-01-10'
           });
 
+          //表單網址
           let callback_url = document.getElementById('callback_url');
           callback_url.value = window.location.href;
+
+          //首頁網址
+          let callback_home_url = document.getElementById('callback_home_url');
+          let home_url = window.location.href;
+          callback_home_url.value = home_url.replace(window.location.pathname, '');
 
         },
         error: function(error) { // 當接收資料失敗時
@@ -102,6 +112,9 @@
           //......
         }
       });
+
+
+
 
     }
 
@@ -233,6 +246,14 @@
 
       }
       form_item.innerHTML = form_item_html;
+
+
+
+
+      // dom ->
+      // $("#date").prop('min','2022-12-26');
+      // $("#date").prop('max','2022-12-31');
+      // val()
 
       //----------------------------------------結束
 
