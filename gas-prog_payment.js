@@ -1,91 +1,111 @@
 /*=====================================
- 開發模板_v1.3_線上學員
+  取得 payment 結構
 =====================================*/
+function get_stru_payment() {
+  let stru = [{
+    label: '繳費單位',
+    type: 'select',
+    name: 'unit',
+    value: '',
+    valid: '', //required
+    option: '玉山|國泰|台新|聯邦|電費|水費',
+    width: '3'
+  },
+  {
+    label: '繳費日期',
+    type: 'date',
+    name: 'date',
+    value: '',
+    valid: 'required', //required
+    option: '',
+    width: '3'
+  },
+  {
+    label: '繳費金額',
+    type: 'text',
+    name: 'money',
+    value: '',
+    valid: 'required', //required
+    option: '',
+    width: '3'
+  },
+  {
+    label: '其他',
+    type: 'text',
+    name: 'ps',
+    value: '',
+    valid: '', //required
+    option: '',
+    width: '3'
+  }
+  ];
 
-//------------------------------------- 1. GAS全域變數的方法
-var SCRIPT_PROP = PropertiesService.getScriptProperties(); // new property service
-//------------------------------------- 2. 路由
-var Route = {};
-Route.path = function (route, callback) {
-  Route[route] = callback;
+  return stru;
 }
-//------------------------------------- 3. 宣告
-var global, menu;
 
 /*=====================================
-  Get
+  繳費通知單 工作表
 =====================================*/
-function doGet(e) {
-  //-------------------------------------取得全域變數
-  global = get_global();
-  //-------------------------------------menu子樣板
-  menu = Sheet.render('menu', { global: global });
-  //--------------------------------------------------------管理員路由
-  if (global['isAdmin'] === true) {
-    //路由 全域變數
-    Route.path("form_global", form_global);
-
-    //路由 商品類別 管理員
-    Route.path("prod_kind", prod_kind);//查詢
-    Route.path("form_prod_kind", form_prod_kind);//新增 編輯
-
+function create_payment(sheet='繳費通知單') {
+  //取得試算表
+  let ss = SpreadsheetApp.getActiveSpreadsheet();
+  //取得工作表
+  let ws = ss.getSheetByName(sheet);
+  if(ws === null){//目前沒有工作表
+    ws = ss.insertSheet();
+    ws.setName(sheet);
   }
+  //取得範圍
+  let range;
 
-  Route.path("iframe", index);//嵌入網址
-  Route.path("iframe_1", iframe_1);//嵌入網站
+  let stru_payment = get_stru_payment();
 
-  Route.path("api_stru_payment", api_stru_payment);//
-  //--------------------------------------------------------管理員路由 end
+  let rowIndex = 1;
+  let colIndex;
 
-  if (Route[e.parameter.op]) {
-    return Route[e.parameter.op](e);
-  } else {
-    return index(e);
+  for (let i in stru_payment) {
+    //寫資料
+    colIndex = parseInt(i) + 1;//
+    range = ws.getRange(rowIndex, colIndex);
+    range.setValue(stru_payment[i]['label']);
   }
 }
 
 /*=====================================
-  Post
+  繳費通知 主程式
 =====================================*/
-function doPost(e) {
-  //-------------------------------------取得全域變數
-  global = get_global();
-  //-------------------------------------menu子樣板
-  menu = Sheet.render('menu', { global: global });
+function payment(e) {
+  console.log(e);
+  //取得試算表
+  let ss = SpreadsheetApp.getActiveSpreadsheet();
+  //取得工作表
+  let sheet = '繳費通知單';
+  let ws = ss.getSheetByName(sheet);
+  //取得範圍
+  let range;
+
+  // console.log(e.parameter.unit);
+  // console.log(e['parameter']['unit']);
+
+  let stru_payment = get_stru_payment();
+
+
+  let rowIndex = ws.getLastRow() + 1;
+  let colIndex;
+  /**
+   * 字串 轉 數字 parseInt() Number()
+   */
+  for (let i in stru_payment) {
+    //寫資料
+    colIndex = parseInt(i) + 1;//
+    range = ws.getRange(rowIndex, colIndex);
+    range.setValue(e['parameter'][stru_payment[i]['name']]);
+  }
+
+  // 第7節課
   let content = '';
-
-  //--------------------------------------------------------管理員路由
-  if (global['isAdmin'] === true) {
-
-  }
-  //--------------------------------------------------------管理員路由 end
-
-  Route.path("payment", payment);//繳費通知單
-
-  if (Route[e.parameter.op]) {
-    return Route[e.parameter.op](e);
-  } else {
-    return index(e);
-  }
-}
-
-/*=====================================
- 安裝程式
-=====================================*/
-function setup() {
-  //-------------------------------------------- 把變數存入指令碼屬性
-  SCRIPT_PROP.setProperty("ssId", Sheet.getSs().getId());
-  SCRIPT_PROP.setProperty("adminEmail", Session.getActiveUser().getEmail());//管理員email
-
-  // 建立 全域變數
-  create_global();
-
-  // 商品類別
-  create_prod_kind();
-
-  // 繳費通知單
-  create_payment();
-
-
+  content += Sheet.render('payment', {e:e, stru_payment: stru_payment}, '');
+  // 渲染網頁
+  return Sheet.render('index', {content: content, menu: ''}, '繳費通知單');
 
 }

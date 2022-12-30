@@ -51,7 +51,7 @@
   <main class="container">
     <h1 class="text-center mt-3">繳費通知單</h1>
 
-    <form action="https://script.google.com/macros/s/AKfycbzU7OU-7qKfbjcZpxSkihrDzHhT1CKVitxyxwr7rrPgUUZgSCujQp4Jffn3ceGqDijX/exec" class="" method="post">
+    <form action="" class="" method="post" id="myForm">
       <div class="row" id="form_item">
 
       </div>
@@ -73,10 +73,12 @@
       box.insertAdjacentHTML("afterend", "<div class='text-center mt-3'>container寬度：" + box.clientWidth + "px</div>" + "<div class='text-center mt-3'>網頁可見區域寬：" + document.body.clientWidth + "px</div>");
 
       // 取得結構資料
-      // let url = 'https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec';
+      let url = 'https://script.google.com/macros/s/AKfycbwtDqZiw3RSzAksn5TaFedWu_V0GGa51UrDXk9UVswEBCg_9bF18Hc9M0uuNxsxNpZg/exec';
+
+      $('#menu').prop('action', url);
 
       // 取得結構資料 1
-      let url = 'https://script.google.com/macros/s/AKfycbzU7OU-7qKfbjcZpxSkihrDzHhT1CKVitxyxwr7rrPgUUZgSCujQp4Jffn3ceGqDijX/exec';
+      // let url = 'https://script.google.com/macros/s/AKfycbzU7OU-7qKfbjcZpxSkihrDzHhT1CKVitxyxwr7rrPgUUZgSCujQp4Jffn3ceGqDijX/exec';
 
       // 取得結構資料 5
       // let url = 'https://script.google.com/macros/s/AKfycbwYiRtZhwglsQSF5_WU_UbSVIjeeyo9TIMxDhuoYrYOlxPZzCALcgUYGpFh7yFP9xbpJg/exec';
