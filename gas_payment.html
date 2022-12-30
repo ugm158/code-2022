@@ -1,0 +1,24 @@
+<!--
+  e ={
+    parameter:
+    { op: 'payment',
+      callback_url: 'http://127.0.0.1:5500/form_20221226.html',
+      money: '999',
+      date: '2022-12-31',
+      unit: '水費',
+      ps: '456' }
+  }
+ -->
+ <h1 class='text-center my-5'>繳費通知單</h1>
+ <div class='row'>
+   <? for(let i in stru_payment){ ?>
+     <div class="col-sm-<?= stru_payment[i]['width'] ?> mb-3">
+       <label class="form-label"><?= stru_payment[i]['label'] ?></label>
+       <div class="form-control">
+         <?= e['parameter'][stru_payment[i]['name']] ?>
+       </div>
+     </div>
+   <? } ?>
+ </div>
+
+ <a href='<?!= e.parameter.callback_url ?>' class="btn btn-success">返回表單</a>
