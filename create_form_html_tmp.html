@@ -16,9 +16,10 @@
 
   <h1 class="text-center mt-3">表單名稱</h1>
 
-  <form id="myForm" class="form-horizontal">
+  <form id="myForm" class="form-horizontal" method="post" action>
     <div id='form_content' class="row"></div>
-    <input type="hidden" name="op" value="contact" id="op">
+    <input type="hidden" name="op" value="api_post_row" id="op">
+    <input type="hidden" name="ofsn" value="2" id="ofsn">
     <input type="hidden" name="callback_url" value="" id="callback_url">
     <input type="hidden" name="callback_home_url" value="" id="callback_home_url">
     <button type="submit" class="btn btn-primary w-100" id="submit">送出</button>
@@ -32,10 +33,13 @@
   $(function() {
     let url = "https://script.google.com/macros/s/AKfycbzMtPPHyuWJgkN7mGgsj5n9vI3QLRSZILtI6cq_RozJRUSEnLQtfBI_IL_JX94YFosf/exec";
     let data = {
-      op: 'get_stru',
+      op: 'api_get_stru',
       ofsn: 2
     };
     let stru = [];
+
+    // $("#myForm").prop("action", url);
+
     $.ajax({
       url: url, // 請求資料的網址
       data: data, // 如果需要傳送資料時，則將資料設定在這裡
@@ -74,23 +78,138 @@
       alert('表單取得錯誤！');
       $("#myForm").prop("class", "d-none");
     }
+
+    $("#myForm").submit(function(event) {
+
+      // 阻止表格正常提交
+      event.preventDefault();
+
+      //防止重覆送出
+      $("#submit").prop("disabled", true);
+      data = {
+        op: 'api_post_stru',
+        ofsn: 2
+      };
+
+      $.ajax({
+        url: url, // 請求資料的網址
+        data: data, // 如果需要傳送資料時，則將資料設定在這裡
+        method: 'GET', // 請求資料的方式(Ex:POST / GET / PUT...等)
+        dataType: 'json', // 請求資料的類型(Ex:xml, json, script, or html...等)
+        async: false, // 預設是true=非同步,false=同步 (true時整行可省略)
+        beforeSend: function() { // 發送請求前執行的動作
+          $("#show").prop("class", "my-5");
+          //......
+        },
+        success: function(result) { // 當成功接收到資料時
+          $("#show").prop("class", "d-none my-5");
+          console.log(result);
+        },
+        error: function(error) { // 當接收資料失敗時
+          $("#show").prop("class", "d-none my-5");
+          console.log(error);
+          //......
+        }
+      });
+
+
+
+
+      // $.ajax({
+      //   url: url,
+      //   method: 'GET', // 請求資料的方式(Ex:POST / GET / PUT...等)
+      //   dataType: 'json', // 請求資料的類型(Ex:xml, json, script, or html...等)
+      //   async: false, // 預設是true=非同步,false=同步 (true時整行可省略)
+      //   data: {
+      //     "name": "123456",
+      //     op: 'api_post_row',
+      //     ofsn: 2
+      //   },
+      //   success: function(response) {
+
+      //     alert("成功");
+      //     console.log(response);
+
+      //   },
+      //   error: function(error) {
+      //     console.log(error);
+      //     alert("失敗！")
+      //   }
+      // });
+
+
+      // data = {
+      //   op: 'api_post_row',
+      //   ofsn: 2
+      // };
+      // url += '?op=api_post_row&ofsn=2';
+      // api_post_row(url, data);
+
+
+    });
+    // // 監聽 submit
+    // $('#submit').on('click',function(event){
+    //   //防止重覆送出
+    //   $('#myForm').submit();
+    //   $("#submit").prop("disabled", true);
+
+    //   let formData = {
+    //     name: '郭俊良',
+    //     tel: '0921-560421'
+    //   }
+    //   data = {
+    //     op: 'api_post_row',
+    //     ofsn: 2
+    //   };
+    //   // api_post_row(url, data);
+    //   //
+    //   // event.preventDefault();
+    // })
+
   });
+
+  // 傳送表單
+  function api_post_row(url, data) {
+
+    $.ajax({
+      url: url, // 請求資料的網址
+      data: data, // 如果需要傳送資料時，則將資料設定在這裡
+      method: 'POST', // 請求資料的方式(Ex:POST / GET / PUT...等)
+      dataType: 'json', // 請求資料的類型(Ex:xml, json, script, or html...等)
+      async: false, // 預設是true=非同步,false=同步 (true時整行可省略)
+      beforeSend: function() { // 發送請求前執行的動作
+        $("#show").prop("class", "my-5");
+        //......
+      },
+      success: function(data) { // 當成功接收到資料時
+        $("#show").prop("class", "d-none my-5");
+        consoel.log(data);
+        // return result;
+      },
+      error: function(error) { // 當接收資料失敗時
+        $("#show").prop("class", "d-none my-5");
+        console.log(error);
+        //......
+      }
+    });
+
+
+  }
 
   // 樣版語法
   function create_template(target_id, stru) {
 
     // -----變成函數 create_template(target_id, stru)
 
-    let form_content = $('#'+target_id);
     let form_content_html = options_html = '';
     let options;
 
     for (let i in stru) {
-      if(stru[i]['kind'] === '隱藏'){
+      if (stru[i]['kind'] === '隱藏') {
         form_content_html += `
       <input type="hidden" name="${stru[i]['name']}" value="${stru[i]['default']}" id="${stru[i]['name']}">`;
 
-      }else if(stru[i]['kind'] === '簡答'){
+      } else if (stru[i]['kind'] === '簡答') {
         form_content_html += `
       <div class="col-sm-${stru[i]['form_width']} mb-3">
         <label for="${stru[i]['name']}" class="form-label">${stru[i]['title']}</label>
@@ -99,128 +218,12 @@
 
       }
 
-      if (stru[i]['type'] === 'text' ||
-        stru[i]['type'] === 'url' ||
-        stru[i]['type'] === 'email' ||
-        stru[i]['type'] === 'password' ||
-        stru[i]['type'] === 'date' ||
-        stru[i]['type'] === 'month' ||
-        stru[i]['type'] === 'week' ||
-        stru[i]['type'] === 'number' ||
-        stru[i]['type'] === 'color' ||
-        stru[i]['type'] === 'search'
-      ) { //簡答
-        form_content_html += `
-      <div class="col-sm-${stru[i]['width']} mb-3">
-        <label for="${stru[i]['name']}" class="form-label">${stru[i]['label']}</label>
-        <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${stru[i]['value']}" class="form-control" id="${stru[i]['name']}" ${stru[i]['valid']}>
-      </div>`;
-      } else if (stru[i]['type'] === 'radio') {
-        options = stru[i]['option'].split('|');
-        options_html = '';
-        /*
-          ['雞腿', '排骨', '招牌']
-          options[0]
-          options[1]
-          options[2]
-          options[j]
-        */
-        for (let j in options) {
-          options_html += `
-        <div class="form-check form-check-inline">
-          <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${options[j]}" class="form-check-input" id="${stru[i]['name']}_${j}" ${stru[i]['valid']}>
-          <label class="form-check-label" for="${stru[i]['name']}_${j}">${options[j]}</label>
-        </div>`;
-        };
-
-        // console.log(options_html);
-        //跑迴圈
-        //選項html
-        form_content_html += `
-      <div class="col-sm-${stru[i]['width']} mb-3">
-        <label class="form-label w-100">${stru[i]['label']}</label>
-        ${options_html}
-      </div>`;
-
-      } else if (stru[i]['type'] === 'select') {
-        // 1.首先替換 變數
-        // 2.將 stru[i]['option'] => 陣列 ['下拉選單1', '下拉選單2', '下拉選單3']
-        // 3.跑迴圈
-        // stru[i]['option'] => '行政|訓導|總務'
-        options = stru[i]['option'].split('|');
-        options_html = '';
-        for (let j in options) {
-          options_html += `
-        <option value="${options[j]}">${options[j]}</option>`;
-        }
-
-        form_content_html += `
-      <div class="col-sm-${stru[i]['width']} mb-3">
-        <label class="form-label">${stru[i]['label']}</label>
-        <select name="${stru[i]['name']}" class="form-select" id="${stru[i]['name']}" ${stru[i]['valid']}>
-         ${options_html}
-        </select>
-      </div>`;
-      } else if (stru[i]['type'] === 'select_m') {
-        // 1.首先替換 變數
-        // 2.將 stru[i]['option'] => 陣列 ['下拉選單1', '下拉選單2', '下拉選單3']
-        // 3.跑迴圈
-        // stru[i]['option'] => '行政|訓導|總務'
-        options = stru[i]['option'].split('|');
-        options_html = '';
-        for (let j in options) {
-          options_html += `
-        <option value="${options[j]}">${options[j]}</option>`;
-        }
-
-        form_content_html += `
-      <div class="col-sm-${stru[i]['width']} mb-3">
-        <label class="form-label">${stru[i]['label']}</label>
-        <select name="${stru[i]['name']}" class="form-select" id="${stru[i]['name']}" ${stru[i]['valid']} multiple >
-         ${options_html}
-        </select>
-      </div>`;
-      } else if (stru[i]['type'] === '段落') {
-
-        form_content_html += `
-      <div class="col-sm-${stru[i]['width']} mb-3">
-        <label class="form-label">${stru[i]['label']}</label>
-        <textarea name="${stru[i]['name']}" class="form-control" id="${stru[i]['name']}" rows="5" ${stru[i]['valid']}>${stru[i]['value']}</textarea>
-      </div>`;
-      } else if (stru[i]['type'] === 'checkbox') {
-        options = stru[i]['option'].split('|');
-        options_html = '';
-        //三元運算
-        let required = stru[i]['valid'] ? `oninput="renderCheckbox('${stru[i]['name']}')"` : '';
-
-        for (let j in options) {
-          options_html += `
-        <div class="form-check form-check-inline">
-          <input type="${stru[i]['type']}" name="${stru[i]['name']}" value="${options[j]}" class="form-check-input ${stru[i]['name']}" id="${stru[i]['name']}_${j}" ${stru[i]['valid']} ${required}>
-          <label class="form-check-label" for="${stru[i]['name']}_${j}">${options[j]}</label>
-        </div>`;
-        };
-
-        form_content_html += `
-      <div class="col-sm-${stru[i]['width']} mb-3">
-        <label class="form-label w-100">${stru[i]['label']}</label>
-        ${options_html}
-      </div>`;
-      } else if (stru[i]['type'] === 'hidden') {
-        form_content_html += `
-      <input type="hidden" name="${stru[i]['name']}" value="${stru[i]['value']}" id="${stru[i]['name']}">`;
-      }
-
     }
-    form_content.html(form_content_html);
+    $('#' + target_id).html(form_content_html);
 
 
 
 
-    // dom ->
-    // $("#date").prop('min','2022-12-26');
-    // $("#date").prop('max','2022-12-31');
-    // val()
 
     //----------------------------------------結束
 
