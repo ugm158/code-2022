@@ -53,49 +53,26 @@
 
       // $("#myForm").prop("action", url);
 
-      $.ajax({
-        url: url, // 請求資料的網址
-        data: data, // 如果需要傳送資料時，則將資料設定在這裡
-        method: 'GET', // 請求資料的方式(Ex:POST / GET / PUT...等)
-        dataType: 'json', // 請求資料的類型(Ex:xml, json, script, or html...等)
-        async: false, // 預設是true=非同步,false=同步 (true時整行可省略)
-        beforeSend: function() { // 發送請求前執行的動作
-          $("#show").prop("class", "my-5");
-          //......
-        },
-        success: function(result) { // 當成功接收到資料時
-          $("#show").prop("class", "d-none my-5");
-          // stru = result;
-        },
-        error: function(error) { // 當接收資料失敗時
-          $("#show").prop("class", "d-none my-5");
-          console.log(error);
-          //......
-        }
-      });
-
-      $.ajax({
-        url: url, // 請求資料的網址
-        data: data, // 如果需要傳送資料時，則將資料設定在這裡
-        method: 'GET', // 請求資料的方式(Ex:POST / GET / PUT...等)
-        dataType: 'json', // 請求資料的類型(Ex:xml, json, script, or html...等)
-        async: false, // 預設是true=非同步,false=同步 (true時整行可省略)
-        beforeSend: function() { // 發送請求前執行的動作
-          $("#show").prop("class", "my-5");
-          //......
-        },
-        success: function(result) { // 當成功接收到資料時
-          $("#show").prop("class", "d-none my-5");
-          stru = result;
-          console.log(stru)
-        },
-        error: function(error) { // 當接收資料失敗時
-          $("#show").prop("class", "d-none my-5");
-          console.log(error);
-          //......
-        }
-      });
-
+      // $.ajax({
+      //   url: url, // 請求資料的網址
+      //   data: data, // 如果需要傳送資料時，則將資料設定在這裡
+      //   method: 'GET', // 請求資料的方式(Ex:POST / GET / PUT...等)
+      //   dataType: 'json', // 請求資料的類型(Ex:xml, json, script, or html...等)
+      //   async: false, // 預設是true=非同步,false=同步 (true時整行可省略)
+      //   beforeSend: function() { // 發送請求前執行的動作
+      //     $("#show").prop("class", "my-5");
+      //     //......
+      //   },
+      //   success: function(result) { // 當成功接收到資料時
+      //     $("#show").prop("class", "d-none my-5");
+      //     // stru = result;
+      //   },
+      //   error: function(error) { // 當接收資料失敗時
+      //     $("#show").prop("class", "d-none my-5");
+      //     console.log(error);
+      //     //......
+      //   }
+      // });
 
       let form_url = window.location.href;
       if (stru) {//.length
