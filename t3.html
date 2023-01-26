@@ -118,13 +118,12 @@
 
         $("#myForm").validate({
           submitHandler: function(form, event) { //驗證成功執行
+            $('#show').prop("class", "my-5");
+            $('#main_content').prop("class", "d-none");
             //防止重覆送出
             $('#submit').prop('disabled', true);
             // 阻止表格正常提交
             event.preventDefault();
-
-            $('#show').prop("class", "my-5");
-            $('#main_content').prop("class", "d-none");
 
             // 取得表單之值
             let formData = {};
