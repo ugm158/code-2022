@@ -1,6 +1,6 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,11 +11,10 @@
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-  <title>建立表單語法</title>
+  <title>表單title</title>
 </head>
 
 <body>
@@ -27,24 +26,22 @@
     </div>
     <!-- 主畫面 -->
     <div id="main_content">
-      <h1 class="text-center mt-3">表單名稱</h1>
+      <h1 class="text-center mt-3">表單title</h1>
       <form id="myForm" class="form-horizontal" method="post" action>
         <div id='form_content' class="row"></div>
         <input type="hidden" name="op" value="api_post_row" id="api_post_row">
-        <input type="hidden" name="ofsn" value="2" id="ofsn">
+        <input type="hidden" name="ofsn" value="表單ofsn" id="ofsn">
         <input type="hidden" name="callback_url" value="" id="callback_url">
         <input type="hidden" name="callback_home_url" value="" id="callback_home_url">
         <button type="submit" class="btn btn-primary w-100" id="submit">送出</button>
       </form>
     </div>
   </div>
-
-  <!-- javascript start-->
   <script>
     $(function() {
-      let ofsn = 1;
+      let ofsn = 表單ofsn;
 
-      let url = "https://script.google.com/macros/s/AKfycbzMtPPHyuWJgkN7mGgsj5n9vI3QLRSZILtI6cq_RozJRUSEnLQtfBI_IL_JX94YFosf/exec";
+      let url = "表單url";
       let data = {
         op: 'api_get_stru', //api_post_row api_get_stru
         ofsn: ofsn
@@ -65,9 +62,9 @@
           event.preventDefault();
           //防止重覆送出
           $("#submit").prop("disabled", true);
-          let formData = {
-            name: '1',
-            tel: '0921-560421'
+          let formData = {};
+          for(let i in stru){
+            formData[stru[i]['name']] = $('#'+stru[i]['name']).val();
           }
           data = {
             op: 'api_post_row',
@@ -83,10 +80,6 @@
       } else {
         alert('表單結構取得失敗，請通知管理員！(function(){})');
       }
-
-
-
-
 
     });
 
@@ -203,11 +196,11 @@
         }
 
       }
+
       $('#' + target_id).html(form_content_html);
 
     }
   </script>
-  <!-- javascript end-->
-</body>
 
+</body>
 </html>
