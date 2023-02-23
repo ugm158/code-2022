@@ -28,32 +28,19 @@
 <body>
   <div class="container">
     <h1 class="text-center">帳戶管理</h1>
-    <table data-toggle="table">
+    <table
+      data-toggle="table"
+      data-url="20230223.json"
+    >
       <thead>
         <tr class="table-secondary">
-          <th>帳戶編號</th>
-          <th>帳戶名稱</th>
-          <th>姓名</th>
-          <th>註冊信箱</th>
-          <th>有效時間</th>
+          <th data-field="id">帳戶編號</th>
+          <th data-field="u-name">帳戶名稱</th>
+          <th data-field="name">姓名</th>
+          <th data-field="email">註冊信箱</th>
+          <th data-field="date">有效時間</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>01</td>
-          <td>admin</td>
-          <td>Jack</td>
-          <td>Jack@1.1.1</td>
-          <td>2099/12/31</td>
-        </tr>
-        <tr>
-          <td>02</td>
-          <td>admin2</td>
-          <td>Jack2</td>
-          <td>Jack2@1.1.1</td>
-          <td>2099/12/31</td>
-        </tr>
-      </tbody>
     </table>
   </div>
 </body>
